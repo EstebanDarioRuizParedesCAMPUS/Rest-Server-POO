@@ -1,3 +1,6 @@
+const usuario = require('../models/usuario.js')
+const Usuario = require('../models/usuario.js')
+
 const homepageU = (req,res) =>{
     res.status(403).json({"message":"Esta es la homepage"})
 }
@@ -6,9 +9,11 @@ const getU = (req,res) =>{
     res.json({"message":"GET API"})
 }
 
-const postU = (req,res) =>{
-    const {Nombre,Edad,Gustos} = req.body
-    res.json({"message":"POST API", Nombre,Edad, Gustos})
+const postU = async (req,res) =>{
+    const body = req.body
+    const usuario = new Usuario(body)
+    await usuario.save()
+    res.json({"message":"POST API", usuario})
 }
 
 const deleteU = (req,res) =>{

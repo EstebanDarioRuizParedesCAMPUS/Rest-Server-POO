@@ -1,4 +1,4 @@
-const {Schema, model} = require('mongoose')
+const {Schema, model, models} = require('mongoose')
 
 const usuariosShema = Schema({
     Nombre: {
@@ -27,8 +27,10 @@ const usuariosShema = Schema({
         type:Boolean,
         default:true,
     },
-    Password:{
-        type:String,
-        required:[true,'Password is required'],
+    GoogleSignIn:{
+        type:Boolean,
+        default:false,
     },
 })
+
+module.exports = model("Usuario", usuariosShema)
