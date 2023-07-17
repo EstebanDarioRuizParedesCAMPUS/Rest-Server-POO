@@ -7,7 +7,8 @@ const getU = (req,res) =>{
 }
 
 const postU = (req,res) =>{
-    res.json({"message":"POST API"})
+    const {Nombre,Edad,Gustos} = req.body
+    res.json({"message":"POST API", Nombre,Edad, Gustos})
 }
 
 const deleteU = (req,res) =>{

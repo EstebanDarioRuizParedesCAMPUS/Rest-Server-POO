@@ -1,14 +1,16 @@
 const express = require('express')
 const cors = require('cors')
-
+const {dbConection} = require('../database/config.js')
 class Server{
     
     constructor(){
         this.app = express()
+        this.app.use(express.json())
         this.port = process.env.PORT
 
         this.usuariosPath = '/api/usuarios'
 
+        this.conectDB()
         //Middlewares
         this.middlewares()
         //Routes
@@ -28,6 +30,10 @@ class Server{
         this.app.listen(this.port, ()=>{
             console.log(`SERVER RUNNING ON PORT ${this.port}`);
         })
+    }
+
+    async conectDB(){
+        await dbConection();
     }
 }
 
