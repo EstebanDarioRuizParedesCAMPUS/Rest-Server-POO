@@ -7,6 +7,7 @@ class Server{
         this.app = express()
         this.app.use(express.json())
         this.port = process.env.PORT
+        this.authPath = "/api/auth"
 
         this.usuariosPath = '/api/usuarios'
 
@@ -23,7 +24,8 @@ class Server{
     }
 
     routes(){
-        this.app.use(this.usuariosPath, require('../routes/usuario.routes.js'))     
+        this.app.use(this.authPath, require('../routes/auth.routes.js')) 
+        this.app.use(this.usuariosPath, require('../routes/usuario.routes.js'))
     }
 
     listen(){
